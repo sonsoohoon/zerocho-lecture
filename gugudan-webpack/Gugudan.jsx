@@ -26,7 +26,7 @@ const GuGuDan = () => {
         // this.input.focus();//커서를 인풋 엘리먼트로 설정
     }
     return (
-        <React.Fragment>
+        <>
             <h3>구구단 게임</h3>
             <div>{firstNumber}곱하기 {secondNumber}</div>
             <form onSubmit={submit}>
@@ -37,7 +37,7 @@ const GuGuDan = () => {
                 <button>입력</button>
             </form>
             <div>{result}</div>
-        </React.Fragment>
+        </>
     );
 }
 

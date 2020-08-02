@@ -14,9 +14,20 @@ module.exports = {
                 test: /\.jsx?/,
                 loader: 'babel-loader',
                 options: {
-                    presets: ['@babel/preset-env', '@babel/preset-react'],
-                    plugins: ['@babel/plugin-proposal-class-properties'],
-                },
+                    presets: [
+                        ['@babel/preset-env', {
+                            targets: {
+                                browsers: ['> 5% in KR','last 2 chrome versions'],
+                            },
+                            debug: true,
+                        }],
+                        '@babel/preset-react'],
+                    plugins: [
+                        '@babel/plugin-proposal-class-properties',
+                        'react-hot-loader/babel'
+                    ],
+                    cacheDirectory: true,
+                },//options end
             },
         ],
     },
@@ -26,7 +37,10 @@ module.exports = {
     }, //입력 파일 설정
     output : {
         path : path.join(__dirname,'dist'), //현재디렉토리 + dist
-        filename : 'app.js'
+        filename : 'app.js',
+        // webpack-dev-server 사용 시 <script src="./dist/app.js"></script> /dist 경로 추가
+        // 추가 없을 시에 html 에서 <script src="./dist/app.js"></script> 가 아닌 <script src="./app.js"></script> 로 해줘야 동작
+        publicPath: '/dist/'
     }, //출력 파일 설정
 
 };
