@@ -1,6 +1,48 @@
 const React = require('react');
 const ReactDom = require('react-dom');
+const { useState, useRef } = React;
 
+//hooks style
+const WordRelay = () => {
+    const [word, setWord] = useState('국물');
+    const [value, setValue] = useState('');
+    const [result, setResult] = useState('');
+    const inputRef = useRef(null);
+
+    const onSubmitForm = (e) => {
+        e.preventDefault();
+        if (word[word.length -1] === value[0]) { //right
+            setWord(value);
+            setValue('');
+            setResult('정답입니다.');
+        }
+        else { //failed
+            setValue('');
+            setResult('틀렸습니다.');
+        }
+        inputRef.current.focus(); //커서는 항상 input박스로!
+    }
+
+
+    const onChangeInput = (e) => { //text박스에 입력 이벤트가 발생할때마다 value를 새로 렌더링
+        setValue(e.target.value);
+    }
+    return (
+            <>
+                <div>{word}</div>
+                <form onSubmit={onSubmitForm}>
+                    <input ref={useRef} value={value} onChange={onChangeInput}/>
+                    <button>클릭</button>
+                </form>
+                <div>{result}</div>
+            </>
+        );
+}
+
+module.exports = WordRelay;
+
+
+/* class style
 class WordRelay extends React.Component {
     state = {
         word: '국물',
@@ -49,6 +91,8 @@ class WordRelay extends React.Component {
     }
 }
 
+
 const { hot } = require('react-hot-loader/root');
 const Hot = hot(WordRelay);
 module.exports = Hot;
+*/

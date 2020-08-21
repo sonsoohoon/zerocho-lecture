@@ -24,7 +24,7 @@ module.exports = {
                         '@babel/preset-react'],
                     plugins: [
                         '@babel/plugin-proposal-class-properties',
-                        'react-hot-loader/babel'
+                        //'react-hot-loader/babel'
                     ],
                     cacheDirectory: true,
                 },//options end
@@ -40,7 +40,7 @@ module.exports = {
         filename : 'app.js',
         // webpack-dev-server 사용 시 <script src="./dist/app.js"></script> /dist 경로 추가
         // 추가 없을 시에 html 에서 <script src="./dist/app.js"></script> 가 아닌 <script src="./app.js"></script> 로 해줘야 동작
-        publicPath: '/dist/'
+        //publicPath: '/dist/'
     }, //출력 파일 설정
 
 };
